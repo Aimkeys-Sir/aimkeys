@@ -1,20 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+
+import ScrollBasedAnim from './components/ScrollBasedAnim';
+
 import Home from './components/Home';
-import ScrollBasedAnim from './experience/ScrollBasedAnim';
-import {useState,useRef,useEffect} from 'react'
-import Services from './components/Services'
+
+import Services from './components/Services';
+import React, { useEffect, useRef, useState } from 'react';
+
+
 
 
 function App() {
-  const [threeIsLoaded, setThreeIsLoaded] = useState(false)
+  const [threeIsLoaded, setThreeIsLoaded] = useState(true)
+  const [service,setService] = useState("Web Development")
   const ref = useRef(null)
-  const refServive = useRef(null)
 
   function handleScrollTo() {
-    ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    ref.current.scrollIntoView({behavior: 'smooth', block: 'start'} )
   }
+  // function goToService(text){
+  //   setService(text)
+  //   refServive.current.scrollIntoView({behavior: 'smooth', block:"end"})
+  // }
 
+  useEffect((()=>{
+  
+  }),[service])
 
   return (
     <div className="App">
