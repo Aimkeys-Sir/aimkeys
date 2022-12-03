@@ -1,18 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as Dat from 'dat.gui'
 import gsap from 'gsap'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+
 
 
 export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
     const [parent, setParent] = useState(false)
     const [isPhone, setIsPhone] = useState(false)
 
+    const ref = useRef(null)
+
     useEffect((() => {
-        setParent(document.getElementById('canvas-parent'))
-        setIsPhone(window.innerWidth < 480)
+       ref.current.appendChild(createScene())
     }), [])
 
     function createScene() {
@@ -28,14 +29,6 @@ export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
         })
 
 
-        // window.addEventListener('dblclick', () => {
-        //     if (!document.fullscreenElement) {
-        //         renderer.domElement.requestFullscreen()
-        //     } else {
-        //         document.exitFullscreen()
-        //     }
-        // })
-
         const scene = new THREE.Scene()
         const cameraGroup = new THREE.Group()
 
@@ -48,7 +41,7 @@ export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
         } else {
             camera.position.set(0, 1, 3)
         }
-        // const orbitControls = new OrbitControls(camera, renderer.domElement)
+
 
         /**
          * debug gui
@@ -59,33 +52,20 @@ export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
         const tweaks = {
             color: 0xff88cc
         }
-        const orbitControls = new OrbitControls(camera, renderer.domElement)
 
         /**
           * Textures
           */
-         const progressBar=  document.querySelector('.loading-bar')
          
         const loadingManager = new THREE.LoadingManager(
             //loaded
             () => {
                 console.log("loaded")
                 setThreeIsLoaded(true)
-                // gsap.to(
-                //     overlayMaterial.uniforms.uAlpha,
-                //     {
-                //         duration: 2,
-                //         value: 0
-                //     }
-                // )
             },
             //progress
             (item,itemsLoaded,total) => {
-
                const progress = itemsLoaded/total
-               progressBar.style.transform = `scaleX(${progress})`
-                
-
             }
         )
         const textureLoader = new THREE.TextureLoader(loadingManager)
@@ -205,7 +185,6 @@ export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
             alphaMap: pointsTexture,
             transparent: true,
             blending: THREE.AdditiveBlending,
-            // vertexColors: true
         })
         const particlesGeometry = new THREE.BufferGeometry()
 
@@ -232,7 +211,7 @@ export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
         }
 
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positionsArray, 3))
-        // particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3))
+        
 
         const particles = new THREE.Points(particlesGeometry, particlesMaterial)
 
@@ -278,8 +257,6 @@ export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
             displacementMap: boxHeightTexture,
             normalMap: boxNormalTexture,
             displacementScale: 0.01,
-            // transparent: true,
-            // opacity: 0.3,
             roughness: 0.1,
             metalness: .7,
             normalScale: new THREE.Vector2(.1, .1)
@@ -306,7 +283,7 @@ export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
         cornerLight1.position.z = 2
 
         scene.add(cornerLight1)
-        boxGroup.position.y = -1
+        boxGroup.position.y = 0
 
         scene.add(boxGroup)
 
@@ -321,14 +298,9 @@ export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
         directionalLight.position.set(1, 1, 0)
 
         scene.add(ambientLight)
-        // , directionalLight)
-
-        /**
-         * update function
-         */
+     
         const clock = new THREE.Clock()
         function dance() {
-            // orbitControls.update()
 
             const elapsedTime = clock.getDelta()
 
@@ -336,18 +308,6 @@ export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
                 mesh.rotation.x += elapsedTime * .3
                 mesh.rotation.y += elapsedTime * .3
             }
-
-            //animate box
-
-            // boxGroup.rotation.x += elapsedTime * .02
-            // boxGroup.rotation.y += elapsedTime * .07
-
-            //    console.log(cursorChange);
-
-            // boxGroup.rotateX(4*cursorChange.y-boxGroup.rotation.x)
-            // boxGroup.rotateY(8*cursorChange.x -boxGroup.rotation.y)
-
-            //animate camera
             camera.position.y = 6 * -scroll / window.innerHeight
 
 
@@ -361,14 +321,11 @@ export default function ScrollBasedAnim({setThreeIsLoaded,setLoaderScale}) {
 
             window.requestAnimationFrame(dance)
         }
-        parent.appendChild(renderer.domElement)
+ 
         dance()
-    }
-    if (parent) createScene()
 
-    return (
-        <div className='scroll-based-anim'>
-            <div id='canvas-parent'> </div>
-        </div>
-    )
+        return renderer.domElement
+    }
+
+    return <div ref={ref} className='scroll-based-anim'></div>
 }
