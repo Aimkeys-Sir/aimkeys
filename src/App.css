@@ -49,6 +49,7 @@ animation: fading-in 2s;
 }
 .over-lay img{
  max-height: 100vh;
+ max-width: 100%;
 }
 
 @keyframes fading-in {
