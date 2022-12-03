@@ -1,5 +1,5 @@
 import Card from "./Card"
-import "../style/services.css"
+import "./services.css"
 import { faCode, faGamepad, faCubes, faPenNib } from "@fortawesome/free-solid-svg-icons"
 import { faCss3, faFigma, faJs, faReact, faUnity } from "@fortawesome/free-brands-svg-icons"
 import { useState } from "react"
