@@ -1,0 +1,67 @@
+.web-p {
+    height: 100vh;
+    overflow: hidden;
+    padding: 10px;
+    /* justify-content: space-between; */
+    display: flex;
+    align-items: center;
+}
+
+.gameplace {
+    height: 90vh;
+    /* width: 30%; */
+    opacity: 0.85;
+}
+
+.weather {
+    height: 30%;
+    opacity: 0.8;
+    width: 73%;
+}
+
+.murife {
+    width: 73%;
+    height: 30%;
+    opacity: 0.8;
+}
+
+.modelling {
+    padding: 4px;
+    height: 100vh;
+    overflow: hidden;
+    justify-content: space-between;
+}
+.modelling img{
+   opacity: 0.8;
+   margin: 4px;
+}
+
+.first-row {
+    display: flex;
+}
+
+.robot {
+    width: 70vh;
+    z-index: 2;
+}
+
+.watch {
+    width: 70vh;
+}
+
+.cup {
+    width: 70vh;
+}
+
+.bike {
+    width: 70vh;
+    z-index: -1;
+}
+
+.sword {
+    width: 70vh;
+}
+
+.camaro {
+    width: 70vh;
+}
