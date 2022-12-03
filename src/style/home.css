@@ -1,0 +1,252 @@
+.home {
+   background: transparent;
+   color: white;
+   font-family: "Roboto", sans-serif;
+   padding: 10px 10px 0px;
+   min-height: 100vh;
+   position: relative;
+   overflow: hidden;
+}
+
+.navbar {
+   display: flex;
+   justify-content: space-between;
+   /* align-items: center; */
+}
+
+.links {
+   display: flex;
+}
+
+.links h2 {
+   margin-left: 20px;
+   font-size: 15px;
+   font-weight: 500;
+   cursor: pointer;
+   /* transition: .8s; */
+   /* border: 2px solid; */
+}
+.links h2:hover{
+color: #E4AA48;
+font-weight: 800;
+transition: .8s;
+}
+
+.links h3 {
+   margin: 11px 10px;
+   font-size: 23px;
+}
+
+.b-icons {
+   font-size: 15px;
+   margin: 7px auto;
+   cursor: pointer;
+}
+
+.dribble:hover{
+   animation: dribble 2s linear ;
+}
+
+@keyframes dribble{
+   0%{
+      transform: rotateZ('0');
+      font-size: 15px;
+   }
+   100%{
+      font-size: 20px;
+      transform: rotateZ('360');
+   }
+}
+.active-contacts-line{
+ width: 60px;
+ height: 2px;
+ background-color: white;
+ animation: line-anim 1s ease-in-out;
+ /* animation-fill-mode: backwards; */
+ /* animation-direction: reverse; */
+}
+.contacts-div{
+   position: relative;
+   align-items: center;
+   justify-content: center;
+   display: flex;
+   flex-direction: column;
+}
+
+.phone-icons{
+   align-items: center;
+   position: absolute;
+   top: 35px;
+   left: 51px;
+}
+
+@keyframes line-anim {
+   from{
+      width: 0px;
+   }
+   to{
+      width: 60px;
+   }
+}
+@keyframes line-anim {
+   from{
+      width: 0px;
+   }
+   to{
+      width: 60px;
+   }
+}
+
+.circle {
+   top: 50px;
+   left: 4px;
+   position: absolute;
+   height: 350px;
+   width: 350px;
+   border-radius: 50%;
+   background: #2B2B34;
+}
+
+#picture {
+   position: relative;
+   height: 600px;
+   /* position: absolute; */
+   /* border: 2px solid; */
+}
+
+.introduction {
+   width: 350px
+}
+.introduction p{
+   font-family: 'Roboto',serif;
+   font-weight: 400;
+   font-style: italic;
+   font-size: 18px;
+}
+
+.content {
+   display: flex;
+   flex-wrap: wrap;
+   padding-top: 40px;
+   padding-bottom: 0px;
+   text-align: left;
+   padding: 10px;
+}
+
+
+.title h2 {
+   font-size: 40px;
+}
+
+#aim {
+   margin: -50px auto 20px -5px;
+   font-size: 64px;
+}
+
+.intro {
+   color: #E4AA48;
+}
+
+.line {
+   width: 100px;
+   height: 3px;
+   background-color: #E4AA48;
+}
+
+.contacts {
+   display: flex;
+}
+
+.down h4 {
+   margin: 0px 5px;
+}
+
+.up h4 {
+   margin: 20px 5px 10px;
+}
+
+.contact-button {
+   margin-top: 20px;
+   border: 2px solid #E4AA48;
+   /* #9595ee; */
+   width: 160px;
+   cursor: pointer;
+   height: 35px;
+   display: flex;
+   text-align: center;
+   flex-direction: column;
+   justify-content: center;
+   font-weight: 500;
+   font-size: 18px;
+   transition: .8s;
+}
+
+.contact-button:hover {
+   background-color: #E4AA48;
+   color: black;
+   transition: .8s;
+}
+
+.contact-line:hover {
+   text-decoration: underline;
+}
+.name-point{
+   margin:-12px 0;
+}
+.go-down{
+   font-size: 36px;
+   transition: .5s;
+   cursor: pointer;
+   position: absolute;
+   bottom: 40px;
+   text-align: center;
+   width: 100%;
+}
+.go-down-icon:hover{
+   color: #E4AA48;
+   transition: .5s;
+}
+.blocks-for-life{
+display: flex;
+font-size: 30px;
+font-weight: 600;
+margin-bottom: -90px;
+margin-left: -20px;
+align-self: flex-end;
+justify-content: center;
+}
+.for-life{
+color: #E4AA48;
+}
+
+@media only screen and (min-width:430px) {
+   .home {
+      padding: 30px 40px 0px;
+   }
+
+   .links h2 {
+      margin-left: 50px;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+   }
+
+   .contact-line:hover {
+      text-decoration: none;
+   }
+
+   .b-icons {
+      font-size: 18px;
+      margin: 10px auto;
+      cursor: pointer;
+   }
+   .navbar{
+      align-items: center;
+   }
+   .content{
+      justify-content: space-between;
+   }
+   .name-point{
+      margin: 0;
+   }
+}
