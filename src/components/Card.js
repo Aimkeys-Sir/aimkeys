@@ -15,10 +15,10 @@ export default function Card({ goToService, text, icon, projects, index, achieve
 
     function PictureCard({ item }) {
         return (
-            <a target={"_blank"} className="pic-link" key={index} href={item.go} style={{ position: "relative" }}>
+            <a className="pic-link" key={index} href={item.go} style={{ position: "relative" }}>
                 <img src={item.image} alt={item.name} className="port-pic" />
                 <div className="invisible"></div>
-                {<div className="cover-div" >{item.name}<FontAwesomeIcon icon={faArrowUpRightFromSquare}/></div>}
+                {<div className="cover-div" >{item.name}{" "} <FontAwesomeIcon icon={faArrowUpRightFromSquare}/></div>}
             </a>
         )
     }
