@@ -1,20 +1,15 @@
-import "../style/home.css"
+import "./home.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faDribbble, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons"
-import { faAngleDown, faCircle } from "@fortawesome/free-solid-svg-icons"
+import { faDribbble, faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons"
+import { faAngleDown, faCircle, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 
 export default function Home({ handleScrollTo }) {
     const [isPhone, setIsPhone] = useState(false)
     const [showContacts, setShowContacts] = useState(false)
-    const [goDown, setGoDown] = useState(false)
 
     window.addEventListener('resize', () => {
-        if (window.innerWidth < 430) {
-            setIsPhone(true)
-        } else {
-            setIsPhone(false)
-        }
+      setIsPhone(window.innerWidth < 480)
     })
 
     useEffect((() => {
@@ -28,16 +23,17 @@ export default function Home({ handleScrollTo }) {
     function handleContactOnclick() {
         setShowContacts(show => !show)
     }
+     function copyToClipBoard(text, value){
+        navigator.clipboard.writeText(value)
+     }
 
 
     return (
         <div className="home page">
             <div className="navbar">
                 <div className="name-point" style={{ display: "flex" }}>
-                    {/* <h2>AI</h2> */}
                     <h2>Mk</h2>
                     <FontAwesomeIcon style={{ margin: "35px 5px", fontSize: "10px", color: "#E4AA48" }} icon={faCircle} />
-                    {/* <h2>EYS</h2> */}
                 </div>
                 <div className="links">
                     <h2 onClick={handleScrollTo}>Portfolio</h2>
@@ -47,20 +43,13 @@ export default function Home({ handleScrollTo }) {
                         {showContacts ? <div className="phone-icons">
                             <div className="active-contacts-line"></div>
                             <div className="all-icons">
-                                <FontAwesomeIcon className="b-icons twitter" icon={faTwitter} />
-                                <FontAwesomeIcon className="b-icons dribble" icon={faDribbble} />
-                                <FontAwesomeIcon className="b-icons linkedin" icon={faLinkedin} />
+                                {/* <div><FontAwesomeIcon className="b-icons twitter" icon={faTwitter} /></div> */}
+                                <div> <FontAwesomeIcon  onClick={()=>copyToClipBoard("email","aimkeys.mwaura@gmail.com")} className="b-icons email" icon={faEnvelope} /></div>
+                                <div><FontAwesomeIcon onClick={()=>copyToClipBoard("phone number","+254795217556")} className="b-icons phonee" icon={faPhone} /></div>
+                                {/* <div></div> */}
                             </div>
                         </div> : null}
                     </div>
-                    {/* {isPhone ?
-                        null
-                        : <>
-                            <h3>|</h3>
-                            <FontAwesomeIcon className="b-icons" icon={faTwitter} />
-                            <FontAwesomeIcon className="b-icons" icon={faDribbble} />
-                            <FontAwesomeIcon className="b-icons" icon={faLinkedin} />
-                        </>} */}
                 </div>
 
             </div>
@@ -76,14 +65,14 @@ export default function Home({ handleScrollTo }) {
                     <div className="line"></div>
 
                     <div className="contacts up">
-                        <h4>Instagram</h4>
+                        <a target='_blank' href="https://twitter.com/aimkeys_m"><h4>Twitter</h4> <FontAwesomeIcon className="b-icon twitter" icon={faTwitter}/></a>
                         <h4>|</h4>
-                        <h4>LinkedIn</h4>
+                        <a target='_blank' href="https://www.linkedin.com/in/kelvin-aimkeys-mwaura-654447244/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3B59jwljWAScC7grxd1d7wEg%3D%3D"><h4>LinkedIn</h4><FontAwesomeIcon className="b-icon linkedin" icon={faLinkedin} /></a>
                     </div>
                     <div className="contacts down">
-                        <h4>Dribble</h4>
+                        <a target='_blank' href="https://github.com/Aimkeys-Sir"><h4>Github</h4> <FontAwesomeIcon className="b-icon github" icon={faGithub} /></a>
                         <h4>|</h4>
-                        <h4>CodePen</h4>
+                        <a target='_blank' href="https://www.codewars.com/users/Aimkeys-Sir"><h4>CodeWars</h4><img className="codewars" src="/icons/codewars.svg" alt="codewars"/></a>
                     </div>
 
                     <div onClick={() => window.open("mailto:aimkeys.mwaura@gmail.com?subject=Talk to Aimkeys&body=/*Hello there. You can always send me a email, I reply quite fast, or use my socials, thank you!*/")} className="contact-button">
@@ -95,10 +84,11 @@ export default function Home({ handleScrollTo }) {
                     {/* <img id="picture" src="/mk2.png" alt="mk" /> */}
 
                 </div>
+                {isPhone? null:
                 <div className="blocks-for-life">
                     <div className="blocks">Blocks</div>
                     <div className="for-life">For Life</div>
-                </div>
+                </div>}
                 <div className="introduction">
                     <h1>I am</h1>
                     <h3 className="intro">A Full Stack Web Developer</h3>
