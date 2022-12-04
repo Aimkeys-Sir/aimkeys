@@ -59,8 +59,10 @@
 
 .tops {
   text-align: center;
+  display: flex;
 }
 .tops h2{
+  margin-left: 8px;
   color: #E4AA48;
 }
 
