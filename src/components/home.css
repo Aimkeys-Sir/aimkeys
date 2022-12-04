@@ -22,11 +22,16 @@
 
 .links h2 {
    margin-left: 20px;
-   font-size: 15px;
+   font-size: 18px;
    font-weight: 500;
    cursor: pointer;
 }
 .links h2:hover{
+color: #E4AA48;
+font-weight: 800;
+transition: .8s;
+}
+.c-active{
 color: #E4AA48;
 font-weight: 800;
 transition: .8s;
@@ -55,8 +60,8 @@ transition: .8s;
    position: absolute;
    display: flex;
    flex-direction: column;
-   top: 80px;
-   right: 60px;
+   top: 55px;
+   right: 30px;
 }
 
 .circle {
@@ -215,6 +220,42 @@ transition: .8s;
       height: 25px;
      background: #B1361E;
    }
+   .all-icons{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+   }
+   .contact-items{
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+   }
+   .contact-items div{
+      border-radius: 4px;
+      padding: 6px;
+      background: #17171891;
+   }
+   .text-copied{
+      top: 5px;
+      color: #E4AA48;
+      position: absolute;
+      animation: copied 2s ease-in-out;
+   }
+
+   @keyframes copied {
+      0%{
+         transform: scale(1);
+      }
+      65%{
+         transform: scale(1.6);
+      }
+      80%{
+         transform: scale(1);
+      }
+      100%{
+         transform: scale(0);
+      }
+   }
 @media only screen and (min-width:430px) {
    .home {
       padding: 30px 40px 0px;
@@ -222,15 +263,27 @@ transition: .8s;
 
    .links h2 {
       margin-left: 50px;
-      font-size: 18px;
+      font-size:20px;
       font-weight: 500;
       cursor: pointer;
+   }
+   .links h2:hover{
+      font-size: 24px;
+      transition: .3s;
+   }
+   .c-active{
+      font-size: 24px;
+      transition: .3s;
    }
 
    .contact-line:hover {
       text-decoration: none;
    }
 
+   .phone-icons{
+      top: 90px;
+      right: 60px;
+   }
   
  
    .navbar{

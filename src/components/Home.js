@@ -8,6 +8,9 @@ export default function Home({ handleScrollTo }) {
     const [isPhone, setIsPhone] = useState(false)
     const [showContacts, setShowContacts] = useState(false)
 
+    const [activeItem,setActiveItem] = useState("")
+    const [textCopied, setTextCopied] = useState("")
+
     window.addEventListener('resize', () => {
       setIsPhone(window.innerWidth < 480)
     })
@@ -21,10 +24,16 @@ export default function Home({ handleScrollTo }) {
     }))
 
     function handleContactOnclick() {
-        setShowContacts(show => !show)
+       setActiveItem('contacts')
     }
      function copyToClipBoard(text, value){
         navigator.clipboard.writeText(value)
+        setTextCopied(text)
+     }
+     if(textCopied){
+        setTimeout(() => {
+            setTextCopied("")
+        }, 2000);
      }
 
 
@@ -37,18 +46,19 @@ export default function Home({ handleScrollTo }) {
                 </div>
                 <div className="links">
                     <h2 onClick={handleScrollTo}>Portfolio</h2>
-                    <h2>Blogs</h2>
+                    <h2 className={`${activeItem === "blogs"?"c-active":""}`} onClick={()=>setActiveItem('blogs')}>Blogs</h2>
                     <div className="contacts-div">
-                        <h2 onClick={handleContactOnclick} className="contact-line">Contact</h2>
-                        {showContacts ? <div className="phone-icons">
+                        <h2 onBlur={()=>setActiveItem("")} onClick={handleContactOnclick} className={`contact-line ${activeItem === "contacts"?"c-active":""}`}>Contact</h2>
+                        {activeItem === "contacts" ? <div className="phone-icons">
                             <div className="active-contacts-line"></div>
                             <div className="all-icons">
                                 {/* <div><FontAwesomeIcon className="b-icons twitter" icon={faTwitter} /></div> */}
-                                <div> <FontAwesomeIcon  onClick={()=>copyToClipBoard("email","aimkeys.mwaura@gmail.com")} className="b-icons email" icon={faEnvelope} /></div>
-                                <div><FontAwesomeIcon onClick={()=>copyToClipBoard("phone number","+254795217556")} className="b-icons phonee" icon={faPhone} /></div>
+                                <div className="contact-items"><div>aimkeys.mwaura@gmail.com</div>  <FontAwesomeIcon  onClick={()=>copyToClipBoard("email","aimkeys.mwaura@gmail.com")} className="b-icons email" icon={faEnvelope} /></div>
+                                <div className="contact-items"><div>+254 795 217 556</div><FontAwesomeIcon onClick={()=>copyToClipBoard("phone no.","+254795217556")} className="b-icons phonee" icon={faPhone} /></div>
                                 {/* <div></div> */}
                             </div>
                         </div> : null}
+                        {textCopied?<p className="text-copied">{textCopied} copied!</p>: null}
                     </div>
                 </div>
 
@@ -92,7 +102,7 @@ export default function Home({ handleScrollTo }) {
                 <div className="introduction">
                     <h1>I am</h1>
                     <h3 className="intro">A Full Stack Web Developer</h3>
-                    <p> I have expertise in designing web apps using react for the frontend and ruby on rails for the backend. </p>
+                    <p> I design your favourite web apps. I use react on the frontend and ruby on rails on the backend. </p>
                     <p>I love to learn all that I can, to share, teach and mentor.</p>
                     <a style={{ textDecoration: "none", color: "white" }} href="/cv/kelvin_mwaura.pdf" download><div className="contact-button">
                         Download my CV
@@ -102,9 +112,9 @@ export default function Home({ handleScrollTo }) {
                 </div>
 
             </div>
-            <div className="go-down">
+            {isPhone?null:<div className="go-down">
                 <FontAwesomeIcon className="go-down-icon" onClick={handleScrollTo} icon={faAngleDown} />
-            </div>
+            </div>}
         </div>
     )
 }
