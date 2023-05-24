@@ -109,7 +109,7 @@ export default function Home({ handleScrollTo }) {
                     <h3 className="intro">A Full Stack Web Developer</h3>
                     <p> I design your favourite web apps. I use react on the frontend and ruby on rails on the backend. </p>
                     <p>I love to learn all that I can, to share, teach and mentor.</p>
-                    <a style={{ textDecoration: "none", color: "white" }} href="/cv/kelvin_mwaura.pdf" download><div className="contact-button">
+                    <a style={{ textDecoration: "none", color: "white" }} href="/cv/Kelvinmwaura.pdf" download><div className="contact-button">
                         Download my CV
                     </div>
                     </a>
